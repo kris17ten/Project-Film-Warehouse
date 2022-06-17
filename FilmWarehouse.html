@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Film Warehouse </title>
+<link rel="stylesheet" type="text/css" href="FilmWarehouse.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="recommender.js"></script>
+<header> <center> 	<h1> Film Warehouse</h1> 
+    
+
+ </center> 
+
+<nav>
+
+<center>
+
+<button><a href="index.html" style="color:white; text-decoration:none">Homepage</a></button>
+<button><a href="GenresPage.html" style="color:white; text-decoration:none">Genres</a></button>
+<button><a href="LoginPage.html" style="color:white; text-decoration:none">Log In/ Sign Up</a></button>
+<button><a href="checkoutPage.html" style="color:white; text-decoration:none">Checkout</a></button>
+
+
+               
+
+ </center>
+ 
+ </nav>
+</header>
+</head>
+<body>
+    
+       
+
+<center><div id='header3'>
+	
+ <center><h1>Watch movies and tv shows!</h1> </center>
+
+
+ </div></center>
+	<div id='FilmWarehouseBody'>
+	<img src="images/tfa_poster_wide_header-1536x864-959818851016.jpg" alt="HTML5 Icon" style="width:33%;height:100%;">
+		<img src="images/lionking.jpg" alt="HTML5 Icon" style="width:33%;height:100%;">
+		<img src="images/her-joaquin-phoenix-amy-adams.jpg" alt="HTML5 Icon" style="width:33%;height:100%;">
+		
+	</div>
+	<div id='FWTop2'>
+	<center> <h1>Film and TV stpotlight</h1> </center>
+	</div>
+	<div id='FilmWarehouseBody'>
+	<div class='small'>
+
+
+	
+	 <img src="images/2001 a space odessy dvd cover.jfif" alt="HTML5 Icon" style="width:210px;height:270px;"> 
+
+	  <img src="images/Jungle book dvd cover.jpg" alt="HTML5 Icon" style="width:220px;height:270px;"> 
+	   <img src="images/frozen dvd cover.jpg" alt="HTML5 Icon" style="width:220px;height:270px;">
+
+	    <img src="images/captain america civil war dvd cover.jpg" alt="HTML5 Icon" style="width:220px;height:270px;"> 
+	   	 <img src="images/taken dvd cover.jpg" alt="HTML5 Icon" style="width:218px;height:270px;"> 
+	 <img src="images/jason bourne dvd cover.jpg" alt="HTML5 Icon" style="width:210px;height:270px;"> 
+
+	</div>
+</div>
+    
+     <div class="searchbox">
+            <h3>Search for products</h3>
+            <input type="text" id="EnteredSearch">
+            <button onclick="search()">Search</button>
+        </div>
+
+        
+        <h2>Recommendations</h2>
+        <div id="Recommendation div"></div>
+    
+        <div id="products"></div>
+    
+    <h2>fddd</h2>
+ <script>
+            
+            var recommender = new Recommender();
+            //This is used to download the products and show the recommendation area when the page loads
+            window.onload = loadProducts; showRecommendation; 
+            
+            //This code downlaods the JSON product information from the server 
+            function loadProducts(){
+                //This creates request object 
+                var request = new XMLHttpRequest();
+
+                //This code creates event handler that specifies what should happen when the server responds
+                request.onload = function(){
+                    //This code is used to check the HTTP status code which should be 200
+                    if(request.status === 200){
+                        //This code is used to add data from the server to the page abd if it can't theb it should display the error message
+                        displayProducts(request.responseText);
+                    }
+                    else
+                        alert("Error communicating with server: " + request.status);
+                };
+
+                //This code is used to set up the request from the Ajax and then send it
+                request.open("GET", "Ajax.php");
+                request.send();
+            }
+            
+            //Loads products into page
+            function displayProducts(jsonProducts){
+                //Convert JSON to array of product objects
+                var prodArray = JSON.parse(jsonProducts);
+                
+                //Create HTML table containing product data
+                var htmlStr = "<table>";
+                for(var i=0; i<prodArray.length; ++i){
+                    htmlStr += "<tr>";
+                    htmlStr += "<td>" + prodArray[i].name + "</td>";
+                    htmlStr += "<td><img width=50 height=50 src='" + prodArray[i].image_url + "'></td>";
+                    htmlStr += "<td>" + prodArray[i].price + "</td>";
+                    htmlStr += "</tr>";
+                }
+                //Finish off table and add to document
+                htmlStr += "</table>";
+                document.getElementById("products").innerHTML = htmlStr;
+            }
+            
+            //Searches for products in database
+            function search(){
+                //Extract the search text
+                var searchText = document.getElementById("EnteredSearch").value;
+                
+                //Add the search keyword to the recommender
+                recommender.addKeyword(searchText);
+                showRecommendation();
+                
+            }
+            
+            //Display the recommendation in the document
+            function showRecommendation(){
+                document.getElementById("Recommendation div").innerHTML = recommender.getTopKeyword();
+            }
+        </script>
+	
+
+</body>
+<footer>
+<center>
+	<a href="#" class="fa fa-facebook"></a>
+<a href="#" class="fa fa-twitter"></a>
+<a href="#" class="fa fa-google"></a>
+<a href="#" class="fa fa-linkedin"></a>
+<a href="#" class="fa fa-youtube"></a>
+<a href="#" class="fa fa-instagram"></a>
+<a href="#" class="fa fa-pinterest"></a>
+<a href="#" class="fa fa-snapchat-ghost"></a>
+<a href="#" class="fa fa-skype"></a>
+</footer>
+</html>

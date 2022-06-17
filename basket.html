@@ -1,0 +1,105 @@
+<!DOCTYPE>
+<html>
+<head>
+  <link rel="stylesheet" href="style2.css">
+</head>
+<body>  
+            
+<!--- Header --> 
+    
+<div class='header'>
+
+    <a href=basket.php>
+        Basket</a>
+
+    <a href=ios.html>
+        iOS</a>
+
+    <a href=home.html>
+        <img src='LOGO.png' alt='Apple logo' class="logo">
+        </a>
+
+    <a href=android.html>
+        Android
+        </a>
+    <a href=account.html>
+        Account
+        </a>
+</div>
+    
+    
+<!--- CONTENTS -->
+    
+<div style="padding-top: 120px;">
+    
+<div style="text-align: center;">
+        <div class="bold-content">
+        
+                        
+<?php
+
+        //Connect to MongoDB and select database
+        $mongoClient = new MongoClient();
+        $db = $mongoClient->products;
+        
+        //Find all products
+        $products = $db->products->find();
+
+        //Output results onto page
+        if($products->count() > 0){
+            echo '<table>';
+            echo '<tr><th>ID</th><th>Name</th><th>Type</th><th>Brand</th><th>Price</th></tr>';
+            foreach ($products as $document) {
+                echo '<tr>';
+                echo '<td>' . $document["_id"] . "</td>";
+                echo '<td>' . $document["name"] . "</td>";
+                echo '<td>' . $document["type"] . "</td>";
+                echo '<td>' . $document["Brand"] . "</td>";
+                echo '<td>' . $document["Price"] . "</td>";
+                echo '<td><button onclick=\'addToBasket("' . $document["_id"] . '", "' . $document["name"] . '")\'>';
+                echo '<img class="addButtonImg" src="basket-add-icon.png"></button></td>';
+                echo '</tr>';
+            }
+            echo '</table>';
+        }
+
+        //Close the connection
+        $mongoClient->close();
+
+        ?>
+                <input type="submit" value="Checkout!"><br>
+                    
+            
+        </div>
+    
+
+</div>
+    
+<!--- Footer -->    
+        
+<div class='container3'>
+    <div>
+        <a href=orders.html>
+        <p><strong>Basket</strong></p>
+        </a>
+    </div>
+    <div>
+        <a href=android.html>
+        <p><strong>Android</strong></p>
+        </a>
+    </div>
+    <div>
+        <a href=ios.html>
+        <p><strong>iOS</strong></p>
+        </a>
+    </div>
+    <div>
+        <a href=account.html>
+        <p><strong>Account</strong></p>
+        </a>
+    </div>
+    
+</div>
+    
+</body>
+</html>

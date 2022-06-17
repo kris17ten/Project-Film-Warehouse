@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>  
+  <head>    
+    <title id="title">Add Product</title>    
+    <link href="cms.css" type="text/css" rel="stylesheet">  
+    
+  </head>
+  <body id="whatever">   
+    <div id="loginBar">      
+      <ul class="blockMenu">        
+        <li id="Login">          
+        <a href="cms.html" class="threeD">		      Staff Login 		        
+          <span hidden="true" class="threeDBox">			       
+            <span class="front">Staff Login
+            </span>			       
+            <span class="back">Staff Login
+            </span>		        
+          </span>	        </a>        
+        </li>
+              
+      </ul>    
+    </div>         
+    <div id="logoBar">      
+      <img src="images/headerBack.png" id="logo">        
+      <div id="animationX">          
+        <img src="images/running_cat.gif" id="krissy1">        
+      </div>    
+    </div> 
+    <!--3d navigation bar (internet ref. https://davidwalsh.name/3d-menu)-->        
+    <div id="navigation">      
+      <ul class="blockMenu">       
+        <li>        
+        <a href="products.html" class="threeD">		    View Products 		      
+          <span hidden="true" class="threeDBox">			     
+            <span class="front">View Products
+            </span>			     
+            <span class="back">View Products
+            </span>		      
+          </span>	      </a>       
+        </li>       
+        <li>        
+        <a href="addProducts.html" class="threeD">		    Add Product	      
+          <span hidden="true" class="threeDBox">			     
+            <span class="front">Add Product
+            </span>			     
+            <span class="back">Add Product
+            </span>		      
+          </span>	      </a>       
+        </li>       
+        <li>        
+        <a href="updateProducts.html" class="threeD">		    Update Product 		      
+          <span hidden="true" class="threeDBox">			     
+            <span class="front">Update Product
+            </span>			     
+            <span class="back">Update Product
+            </span>		      
+          </span>	      </a>       
+        </li>        
+        <li>        
+        <a href="deleteProducts.html" class="threeD">		    Delete Product 		      
+          <span hidden="true" class="threeDBox">			     
+            <span class="front">Delete Product
+            </span>			     
+            <span class="back">Delete Product
+            </span>		      
+          </span>	      </a>       
+        </li>            
+    </div>          
+    <div id="contents"> 
+      <div id="registrationForm">
+          <h1>ADD PRODUCT</h1>
+          <form name="logForm" action="add_product.php" method="post" enctype="multipart/form-data">
+            
+                  <input type="text" name="dvd_name" class="inputFields" id="dvd_name" size="40" placeholder="XXXXXXXX">
+                <input type="text" name="dvd_director" class="inputFields" id="dvd_director" size="40" placeholder="Some One">
+                <input type="text" name="genre" class="inputFields" id="genre" size="40" placeholder="Genre">
+                <input type="text" name="running_time" class="inputFields" id="running_time" size="40" placeholder="000">
+                <input type="text" name="rating" class="inputFields" id="rating" size="40" placeholder="XX">
+                <input type="text" name="number_in_stock" class="inputFields" id="number_in_stock" size="40" placeholder="000">
+                <input type="file" name="imageToUpload" class="inputFields" id="dvd_image" size="40" placeholder="images/">
+                
+                  <input type="submit" id="submit" value="Submit">
+                  <input type="reset" id="clear" value="Clear">
+                </td>
+              </tr>
+            </table>
+          </form>
+          <p id="logState"></p>     
+     
+      <!--<div id="sidebar">        
+        <h1>User</h1>        
+        <img src="images/profile.png" id="userAvatar">        
+        <p id="loggedInUserName">Krissy Poo</p>        
+        <p id="loggedInHighScore">High Score: xoxo</p>        
+        <p id="loggedInRank">Rank: UNRANKED</p>      
+      </div>             
+      
+             -->
+      
+          
+    </div>         
+    <div id="footer">      
+      <p>©Film Warehouse 2018</p>    
+    </div>  
+  </body>
+</html>   
